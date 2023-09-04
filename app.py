@@ -11,6 +11,7 @@ from weather_forecasting import wether_forecast
 import creatTablePDF
 
 from elteckLogger import EltechHandler
+from logging import FileHandler
 
 from io import BytesIO
 
@@ -18,8 +19,10 @@ from io import BytesIO
 app = Flask(__name__)
 
 hand = EltechHandler(server="Agri Bot")
+file_hand = FileHandler('error.log')
 
 app.logger.addHandler(hand)
+app.logger.addHandler(file_hand)
 
 @app.route('/api/v1/animals_check', methods=['GET'])
 def animals():
